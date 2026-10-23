@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Products</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    table { border-collapse: collapse; width: 60%; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+    th { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+<h1>Products</h1>
+
+<p th:if="${#lists.isEmpty(products)}">No products available.</p>
+
+<table th:unless="${#lists.isEmpty(products)}">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Stock</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="product : ${products}">
+    <td th:text="${product.id}">1</td>
+    <td th:text="${product.name}">Name</td>
+    <td th:text="${#numbers.formatDecimal(product.price, 1, 2)}">0.00</td>
+    <td th:text="${product.stock}">0</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
